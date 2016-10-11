@@ -25,6 +25,7 @@ add_action( 'admin_menu', 'sunset_add_admin_page' );
 function sunset_custom_settings(){
 	register_setting( 'sunset-settings-group', 'first_name' );
 	register_setting( 'sunset-settings-group', 'last_name' );
+	register_setting( 'sunset-settings-group', 'user_description' );
 	register_setting( 'sunset-settings-group', 'twitter_handler' );
 	register_setting( 'sunset-settings-group', 'facebook_handler' );
 	register_setting( 'sunset-settings-group', 'gplus_handler' );
@@ -32,6 +33,7 @@ function sunset_custom_settings(){
 	add_settings_section( 'sunset-sidebar-opstions', 'Sidebar Options', 'sunset_sidebar_opstions', 'alecaddd_sunset');
 
 	add_settings_field( 'sidebar-name', 'Full Name', 'sunset_sidebar_name', 'alecaddd_sunset', 'sunset-sidebar-opstions');
+	add_settings_field( 'sidebar-description', 'Description', 'sunset_sidebar_description', 'alecaddd_sunset', 'sunset-sidebar-opstions');
 	add_settings_field( 'sidebar-twitter', 'Twitter handler', 'sunset_sidebar_twitter', 'alecaddd_sunset', 'sunset-sidebar-opstions');
 	add_settings_field( 'sidebar-facebook', 'Facebook handler', 'sunset_sidebar_facebook', 'alecaddd_sunset', 'sunset-sidebar-opstions');
 	add_settings_field( 'sidebar-gplus', 'Gplus handler', 'sunset_sidebar_gplus', 'alecaddd_sunset', 'sunset-sidebar-opstions');
@@ -45,6 +47,11 @@ function sunset_sidebar_name(){
 	$firstName = esc_attr(get_option( 'first_name' ) );
 	$lastName = esc_attr(get_option( 'last_name' ) );
 	echo '<input type="text" name="first_name" value="'.$firstName.'" placeholder="First Name"/> <input type="text" name="last_name" value="'.$lastName.'" placeholder="Last Name"/>';
+}
+
+function sunset_sidebar_description (){
+	$description = esc_attr(get_option( 'user_description' ) );
+	echo '<input type="text" name="user_description" value="'.$description.'" placeholder="Description"/><p class="description">Write something smart.</p>';
 }
 
 function sunset_sidebar_twitter(){
